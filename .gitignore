@@ -1,0 +1,37 @@
+# Dependencies installed from package.json
+node_modules/
+
+# Production builds
+dist/
+build/
+
+# Local environment variables and secrets
+.env
+.env.local
+.env.*.local
+
+# Keep a safe example of required variables
+!.env.example
+
+# Test coverage
+coverage/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local editor settings
+.vscode/
+.idea/
+*.swp
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

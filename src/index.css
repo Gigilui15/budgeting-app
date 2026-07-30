@@ -1,0 +1,276 @@
+/* Theme tokens: components use these names instead of hard-coded colours. */
+:root {
+  color-scheme: light;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --page-bg: #f7f9fc;
+  --surface: #ffffff;
+  --surface-hover: #f0f4f8;
+  --text: #536078;
+  --text-strong: #162039;
+  --border: #e3e8f0;
+  --accent: #008f83;
+  --accent-soft: #e1f6f2;
+  --accent-strong: #006f68;
+  --focus-ring: rgb(0 143 131 / 28%);
+  --header-shadow: 0 1px 2px rgb(15 23 42 / 5%);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* #222B47 is the anchor; nearby navy shades create depth. */
+  --page-bg: #151b2d;
+  --surface: #222b47;
+  --surface-hover: #2c3757;
+  --text: #b7c1d8;
+  --text-strong: #f5f7fb;
+  --border: #35415f;
+  --accent: #20d8bd;
+  --accent-soft: rgb(32 216 189 / 12%);
+  --accent-strong: #6aebd6;
+  --focus-ring: rgb(32 216 189 / 28%);
+  --header-shadow: 0 8px 30px rgb(4 8 20 / 20%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+  background: var(--page-bg);
+  transition:
+    color 180ms ease,
+    background-color 180ms ease;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+.app-layout main {
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
+  padding-block: 2rem;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--header-shadow);
+  backdrop-filter: blur(12px);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: min(1120px, calc(100% - 2rem));
+  min-height: 72px;
+  margin-inline: auto;
+}
+
+.navbar__brand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--text-strong);
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  text-decoration: none;
+}
+
+.navbar__logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.login__logo {
+  width: 200px;
+  height: 200px;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.login-page {
+  display: flex;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: #fff;
+}
+
+.login-form-side,
+.login-image-side {
+  width: 50%;
+  height: 100%;
+  min-width: 0;
+}
+
+.login-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 4rem);
+  overflow-y: auto;
+}
+
+.login-form-container {
+  width: min(100%, 420px);
+}
+
+.login-image-side {
+  position: relative;
+  overflow: hidden;
+}
+
+.login-side-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.navbar__brand-name {
+  font-size: 1.3rem;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-link,
+.login-link {
+  border-radius: 0.6rem;
+  color: var(--text);
+  font-size: 0.925rem;
+  font-weight: 550;
+  text-decoration: none;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.nav-link {
+  padding: 0.65rem 0.85rem;
+}
+
+.nav-link:hover,
+.login-link:hover {
+  color: var(--text-strong);
+}
+
+.nav-link:hover {
+  background: var(--surface-hover);
+}
+
+.nav-link--active {
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.login-link {
+  padding-block: 0.55rem;
+}
+
+.theme-toggle {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-strong);
+  background: var(--surface);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.nav-link:focus-visible,
+.login-link:focus-visible,
+.theme-toggle:focus-visible,
+.navbar__brand:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    padding-block: 0.7rem;
+  }
+
+  .navbar__links {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .nav-link {
+    flex: 1;
+    min-width: max-content;
+    text-align: center;
+  }
+
+  .login-link {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
