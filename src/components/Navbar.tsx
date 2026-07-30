@@ -1,12 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useTheme } from "../theme/ThemeContext";
+import { useAuth } from "./auth/AuthContext";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
+  const { logout } = useAuth();
+
+  const navigate = useNavigate();
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `nav-link${isActive ? " nav-link--active" : ""}`;
+
+  function handleLogout() {
+    logout();
+    navigate("/login", { replace: true });
+  }
 
   return (
     <header className="site-header">
@@ -33,9 +42,9 @@ const Navbar = () => {
         </div>
 
         <div className="navbar__actions">
-          <NavLink to="/login" className="login-link">
-            Log in
-          </NavLink>
+          <button type="button" className="login-link" onClick={handleLogout}>
+            Log out
+          </button>
           <button
             type="button"
             className="theme-toggle"

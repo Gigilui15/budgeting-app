@@ -7,6 +7,7 @@ import TransactionPage from "./components/TransactionPage";
 import ProfilePage from "./components/ProfilePage";
 import TransactionDetails from "./components/TransactionDetails";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   return (
@@ -22,9 +23,10 @@ function App() {
           <Route
             path="transactions/:transactionId"
             element={<TransactionDetails />}
-          />{" "}
+          />
           <Route path="profile" element={<ProfilePage />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
   );
