@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTheme } from "../theme/ThemeContext";
-import { useAuth } from "./auth/AuthContext";
+import { useAuth } from "../features/auth/AuthContext";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();

@@ -1,9 +1,9 @@
-import { LoginForm } from "./LoginForm";
-import loginImage from "../../assets/login-image.png";
+import { LoginForm } from "../components/LoginForm";
+import loginImage from "../../../assets/login-image.png";
 import { useState } from "react";
-import SignUpForm from "./SignUpForm";
+import SignUpForm from "../components/SignUpForm";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext";
+import { useAuth } from "../AuthContext";
 
 //State 0 -> login and State 1 -> Sign Up
 const LoginPage = () => {

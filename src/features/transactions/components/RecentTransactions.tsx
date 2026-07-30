@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-import { TransactionType, type Transaction } from "../types/transaction";
+import {
+  TransactionType,
+  type Transaction,
+} from "../transactionTypes";
 
 type RecentTransactionsProps = {
   transactions: Transaction[];
@@ -37,4 +40,3 @@ export function RecentTransactions({ transactions }: RecentTransactionsProps) {
     </section>
   );
 }
-

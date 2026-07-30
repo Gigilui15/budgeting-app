@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { type Transaction } from "../types/transaction";
+import type { Transaction } from "./transactionTypes";
 import {
   loadTransactions,
   saveTransactions,
-} from "../utils/transactionStorage";
-import { calculateBalance } from "../utils/transactions";
+} from "./transactionStorage";
+import { calculateBalance } from "./transactionUtils";
 
 export function useTransactions() {
   // The function is passed to useState so loading runs only for the initial state.

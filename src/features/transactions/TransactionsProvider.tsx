@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
-
-import { useTransactions } from "../hooks/useTransactions";
+import { useTransactions } from "./useTransactions";
 import { TransactionsContext } from "./TransactionsContext";
 
 type TransactionsProviderProps = {

@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { z } from "zod";
 
-import { useAuth } from "../auth/AuthContext";
+import { useAuth } from "../AuthContext";
 
 const loginSchema = z.object({
   email: z

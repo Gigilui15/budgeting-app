@@ -1,5 +1,9 @@
-import { Category, type StoredTransaction, type Transaction } from "../types/transaction";
-import { createStarterTransactions } from "./transactions";
+import {
+  Category,
+  type StoredTransaction,
+  type Transaction,
+} from "./transactionTypes";
+import { createStarterTransactions } from "./starterTransactions";
 
 const TRANSACTIONS = "transactions";
 
@@ -12,7 +16,9 @@ export function loadTransactions(): Transaction[] {
   }
 
   try {
-    const storedTransactions = JSON.parse(savedTransactions) as StoredTransaction[];
+    const storedTransactions = JSON.parse(
+      savedTransactions,
+    ) as StoredTransaction[];
 
     return storedTransactions.map((transaction) => ({
       ...transaction,

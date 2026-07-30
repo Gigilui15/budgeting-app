@@ -1,6 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { Category, TransactionType, type Transaction } from "../types/transaction";
+import {
+  TransactionType,
+  type Category,
+  type Transaction,
+} from "./transactionTypes";
 
 export function createTransaction(
   description: string,
@@ -14,7 +18,7 @@ export function createTransaction(
     description,
     type,
     category,
-    date: date,
+    date,
     amount,
   };
 }
@@ -26,12 +30,4 @@ export function calculateBalance(transactions: Transaction[]): number {
       ? balance + transaction.amount
       : balance - transaction.amount;
   }, 0);
-}
-
-export function createStarterTransactions(): Transaction[] {
-  return [
-    createTransaction("Milk, Eggs, and Cheese", 10, TransactionType.Expense, Category.Groceries, new Date()),
-    createTransaction("Medicine", 50, TransactionType.Expense, Category.Health, new Date()),
-    createTransaction("Deposit", 120, TransactionType.Income, Category.Investing, new Date()),
-  ];
 }

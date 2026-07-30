@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { type Transaction } from "../types/transaction";
-import { useTransactionsContext } from "./TransactionsContext";
+import type { Transaction } from "../transactionTypes";
+import { useTransactionsContext } from "../TransactionsContext";
 
-const TransactionDetails = () => {
+const TransactionDetailsPage = () => {
   const { transactionId } = useParams<{ transactionId: string }>();
   const { transactions } = useTransactionsContext();
 
@@ -13,4 +13,4 @@ const TransactionDetails = () => {
   return <div>Transaction: {transaction?.id}</div>;
 };
 
-export default TransactionDetails;
+export default TransactionDetailsPage;

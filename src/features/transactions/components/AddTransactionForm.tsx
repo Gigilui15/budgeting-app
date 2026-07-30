@@ -3,8 +3,8 @@ import {
   Category,
   TransactionType,
   type Transaction,
-} from "../types/transaction";
-import { createTransaction } from "../utils/transactions";
+} from "../transactionTypes";
+import { createTransaction } from "../transactionUtils";
 
 type AddTransactionFormProps = {
   // A callback prop lets this child send a completed transaction to its parent.

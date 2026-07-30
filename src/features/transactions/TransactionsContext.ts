@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-import type { useTransactions } from "../hooks/useTransactions";
+import type { useTransactions } from "./useTransactions";
 
 export type TransactionsContextValue = ReturnType<typeof useTransactions>;
 
