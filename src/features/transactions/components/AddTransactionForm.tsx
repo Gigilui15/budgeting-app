@@ -7,11 +7,13 @@ import {
 import { createTransaction } from "../transactionUtils";
 
 type AddTransactionFormProps = {
+  accountId: string;
   // A callback prop lets this child send a completed transaction to its parent.
   onAddTransaction: (transaction: Transaction) => void;
 };
 
 export function AddTransactionForm({
+  accountId,
   onAddTransaction,
 }: AddTransactionFormProps) {
   // Controlled inputs: React state is the source of truth for what each input displays.
@@ -71,6 +73,7 @@ export function AddTransactionForm({
     const draft = createTransaction(
       description.trim(),
       numericAmount,
+      accountId,
       transactionType,
       category,
       properDate,

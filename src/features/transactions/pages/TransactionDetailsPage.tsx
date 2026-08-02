@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import type { Transaction } from "../transactionTypes";
-import { useTransactionsContext } from "../TransactionsContext";
+import { useUserData } from "../../auth/UserDataContext";
 
 const TransactionDetailsPage = () => {
   const { transactionId } = useParams<{ transactionId: string }>();
-  const { transactions } = useTransactionsContext();
+  const { transactions } = useUserData();
 
   const transaction = transactions.find(
     (t: Transaction) => t.id === transactionId,

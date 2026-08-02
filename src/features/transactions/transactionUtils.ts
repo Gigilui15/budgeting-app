@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
+import { v7 as uuidv7 } from "uuid";
 
 import {
   TransactionType,
@@ -9,12 +9,14 @@ import {
 export function createTransaction(
   description: string,
   amount: number,
+  accountId: string,
   type: TransactionType,
   category: Category,
   date: Date,
 ): Transaction {
   return {
-    id: uuidv4(),
+    id: uuidv7(),
+    accountId,
     description,
     type,
     category,

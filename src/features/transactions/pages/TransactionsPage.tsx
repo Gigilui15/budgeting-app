@@ -1,11 +1,17 @@
 import { AddTransactionForm } from "../components/AddTransactionForm";
 import { BalanceCard } from "../components/BalanceCard";
 import { RecentTransactions } from "../components/RecentTransactions";
-import { useTransactionsContext } from "../TransactionsContext";
+import { useUserData } from "../../auth/UserDataContext";
 
 const TransactionsPage = () => {
-  const { balance, transactions, addTransaction, removeLatestTransaction } =
-    useTransactionsContext();
+  const {
+    balance,
+    transactions,
+    selectedAccount,
+    addTransaction,
+    removeLatestTransaction,
+  } =
+    useUserData();
 
   return (
     <div>
@@ -19,7 +25,10 @@ const TransactionsPage = () => {
         Remove Latest Transaction
       </button>
 
-      <AddTransactionForm onAddTransaction={addTransaction} />
+      <AddTransactionForm
+        accountId={selectedAccount.id}
+        onAddTransaction={addTransaction}
+      />
     </div>
   );
 };

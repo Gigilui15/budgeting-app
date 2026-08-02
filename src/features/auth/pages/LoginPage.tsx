@@ -1,14 +1,20 @@
 import { LoginForm } from "../components/LoginForm";
 import loginImage from "../../../assets/login-image.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SignUpForm from "../components/SignUpForm";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
+import { useTheme } from "../../../theme/ThemeContext";
 
 //State 0 -> login and State 1 -> Sign Up
 const LoginPage = () => {
+  const { setTheme } = useTheme();
   const { isAuthenticated } = useAuth();
   const [authMode, setAuthMode] = useState(0);
+
+  useEffect(() => {
+    setTheme("light");
+  }, [setTheme]);
 
   if (isAuthenticated) {
     return <Navigate to="/" replace />;

@@ -36,15 +36,39 @@ const Navbar = () => {
           <NavLink to="/transactions" className={navLinkClass}>
             Transactions
           </NavLink>
-          <NavLink to="/profile" className={navLinkClass}>
-            Profile
-          </NavLink>
         </div>
 
         <div className="navbar__actions">
-          <button type="button" className="login-link" onClick={handleLogout}>
-            Log out
-          </button>
+          <div className="profile-nav">
+            <NavLink to="/profile" className={navLinkClass}>
+              Profile
+            </NavLink>
+
+            <div className="popup-content">
+              <button
+                type="button"
+                className="logout-menu-item"
+                onClick={handleLogout}
+              >
+                <svg
+                  className="logout-menu-item__icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                  <path d="m16 17 5-5-5-5" />
+                  <path d="M21 12H9" />
+                </svg>
+
+                <span>Log out</span>
+              </button>
+            </div>
+          </div>
           <button
             type="button"
             className="theme-toggle"

@@ -10,9 +10,9 @@ export enum TransactionType {
   Income = "income",
 }
 
-// A TypeScript type describes the exact shape every transaction must follow.
 export type Transaction = {
   id: string;
+  accountId: string, //The transaction account id
   description: string;
   type: TransactionType;
   category: Category;

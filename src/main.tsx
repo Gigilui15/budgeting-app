@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./app/App";
 import "./index.css";
-import { TransactionsProvider } from "./features/transactions/TransactionsProvider";
 import { ThemeProvider } from "./theme/ThemeProvider";
 import { AuthProvider } from "./features/auth/AuthProvider";
 
@@ -14,9 +13,7 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <ThemeProvider>
         <AuthProvider>
-          <TransactionsProvider>
-            <App />
-          </TransactionsProvider>
+          <App />
         </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>

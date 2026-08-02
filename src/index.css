@@ -107,11 +107,16 @@ a {
   height: 200px;
 }
 
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 #root {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   margin: 0;
-  overflow: hidden;
 }
 
 * {
@@ -272,5 +277,119 @@ a {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+.profile-nav {
+  position: relative;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* The floating dropdown card */
+.popup-content {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  z-index: 30;
+
+  min-width: 152px;
+  padding: 0.35rem;
+
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-0.35rem);
+  pointer-events: none;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  box-shadow:
+    0 12px 28px rgb(15 23 42 / 12%),
+    0 3px 8px rgb(15 23 42 / 6%);
+
+  transition:
+    visibility 160ms ease,
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+/* Hover bridge across the visual gap */
+.popup-content::before {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+
+  width: 100%;
+  height: 0.65rem;
+
+  content: "";
+}
+
+.profile-nav:hover .popup-content {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.logout-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+
+  width: 100%;
+  min-height: 40px;
+  padding: 0.6rem 0.7rem;
+
+  border: 0;
+  border-radius: 0.5rem;
+
+  color: #b42318;
+  background: transparent;
+
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.logout-menu-item:hover {
+  color: #991b1b;
+  background: rgb(220 38 38 / 9%);
+}
+
+.logout-menu-item:focus-visible {
+  outline: 3px solid rgb(220 38 38 / 20%);
+  outline-offset: -1px;
+}
+
+.logout-menu-item__icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+/* Better contrast in your dark theme */
+[data-theme="dark"] .logout-menu-item {
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .logout-menu-item:hover {
+  color: #fecaca;
+  background: rgb(248 113 113 / 12%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popup-content,
+  .logout-menu-item {
+    transition: none;
   }
 }

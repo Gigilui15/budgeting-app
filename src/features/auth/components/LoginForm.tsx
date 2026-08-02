@@ -1,10 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 import { useAuth } from "../AuthContext";
@@ -52,10 +49,7 @@ export const LoginForm = () => {
   function onSubmit(data: LoginFormValues) {
     setLoginError("");
 
-    const loginSucceeded = login(
-      data.email,
-      data.password,
-    );
+    const loginSucceeded = login(data.email, data.password);
 
     if (!loginSucceeded) {
       setLoginError("Incorrect email or password.");
@@ -80,9 +74,7 @@ export const LoginForm = () => {
           {...register("email")}
         />
 
-        {errors.email && (
-          <p role="alert">{errors.email.message}</p>
-        )}
+        {errors.email && <p role="alert">{errors.email.message}</p>}
       </div>
 
       <div>
@@ -95,9 +87,7 @@ export const LoginForm = () => {
           {...register("password")}
         />
 
-        {errors.password && (
-          <p role="alert">{errors.password.message}</p>
-        )}
+        {errors.password && <p role="alert">{errors.password.message}</p>}
       </div>
 
       {loginError && <p role="alert">{loginError}</p>}

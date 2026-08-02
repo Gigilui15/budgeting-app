@@ -1,8 +1,8 @@
 import { BalanceCard } from "../features/transactions/components/BalanceCard";
-import { useTransactionsContext } from "../features/transactions/TransactionsContext";
+import { useUserData } from "../features/auth/UserDataContext";
 
 const DashboardPage = () => {
-  const { balance } = useTransactionsContext();
+  const { balance } = useUserData();
 
   return (
     <section>

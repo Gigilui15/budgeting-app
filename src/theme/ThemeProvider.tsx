@@ -22,10 +22,11 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);
-
+  
   const value = useMemo(
     () => ({
       theme,
+      setTheme,
       toggleTheme: () =>
         setTheme((currentTheme) =>
           currentTheme === "dark" ? "light" : "dark",
