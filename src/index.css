@@ -19,6 +19,12 @@
   --accent: #008f83;
   --accent-soft: #e1f6f2;
   --accent-strong: #006f68;
+  --action-primary: #007d74;
+  --action-primary-hover: #006a63;
+  --action-primary-text: #ffffff;
+  --danger: #9a5548;
+  --danger-hover: #81463b;
+  --danger-text: #ffffff;
   --focus-ring: rgb(0 143 131 / 28%);
   --header-shadow: 0 1px 2px rgb(15 23 42 / 5%);
 }
@@ -36,6 +42,12 @@
   --accent: #20d8bd;
   --accent-soft: rgb(32 216 189 / 12%);
   --accent-strong: #6aebd6;
+  --action-primary: #27b9a5;
+  --action-primary-hover: #36cbb6;
+  --action-primary-text: #0d2330;
+  --danger: #b96f61;
+  --danger-hover: #c98072;
+  --danger-text: #190f16;
   --focus-ring: rgb(32 216 189 / 28%);
   --header-shadow: 0 8px 30px rgb(4 8 20 / 20%);
 }
@@ -100,6 +112,45 @@ a {
   width: 50px;
   height: 50px;
   object-fit: contain;
+}
+
+.navbar__back-button {
+  position: absolute;
+  top: 50%;
+  left: clamp(1rem, 4vw, 4rem);
+
+  display: inline-grid;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  place-items: center;
+  color: var(--text-strong);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.navbar__back-button:hover {
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.navbar__back-button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.navbar__back-button svg {
+  width: 1.35rem;
+  height: 1.35rem;
 }
 
 .login__logo {
@@ -269,6 +320,14 @@ body,
   .login-link {
     display: none;
   }
+
+  .navbar:has(.navbar__back-button) {
+    padding-left: 3.5rem;
+  }
+
+  .navbar__back-button {
+    left: 1rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -391,5 +450,248 @@ body,
   .popup-content,
   .logout-menu-item {
     transition: none;
+  }
+}
+
+.delete-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.625rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+
+  color: var(--danger-text);
+  background: var(--danger);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+.delete-button:hover:not(:disabled) {
+  background: var(--danger-hover);
+}
+
+.delete-button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--danger) 30%, transparent);
+  outline-offset: 2px;
+}
+
+.delete-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.delete-button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+.add-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.625rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+
+  color: var(--action-primary-text);
+  background: var(--action-primary);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+.add-button:hover:not(:disabled) {
+  background: var(--action-primary-hover);
+}
+
+.add-button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.add-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.add-button svg {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.transaction-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-block: 1.5rem;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+
+.transactions-page {
+  width: 100%;
+}
+
+.transactions-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.transactions-page__header h1 {
+  margin: 0;
+}
+
+.transaction-form-panel {
+  margin-block: 1.5rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.transaction-table th {
+  color: var(--text);
+  background: var(--surface-hover);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.transaction-table__row {
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+.transaction-table__row:hover,
+.transaction-table__row:focus-visible {
+  background: var(--accent-soft);
+}
+
+.transaction-table__row:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: -3px;
+}
+
+.transaction-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.transaction-table__description {
+  color: var(--text-strong);
+  font-weight: 650;
+}
+
+.transaction-type {
+  display: inline-flex;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.transaction-type--income {
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+}
+
+.transaction-type--expense {
+  color: var(--danger);
+  background: color-mix(
+    in srgb,
+    var(--danger) 12%,
+    transparent
+  );
+}
+
+.transaction-amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.transaction-amount--income {
+  color: var(--accent-strong);
+}
+
+.transaction-amount--expense {
+  color: var(--danger);
+}
+
+.transaction-delete-button {
+  display: inline-grid;
+  place-items: center;
+
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+
+  color: var(--danger);
+  background: transparent;
+  border: 0;
+  border-radius: 0.5rem;
+
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.transaction-delete-button:hover {
+  color: var(--danger-hover);
+  background: color-mix(
+    in srgb,
+    var(--danger) 12%,
+    transparent
+  );
+}
+
+.transaction-delete-button:focus-visible {
+  outline: 3px solid color-mix(
+    in srgb,
+    var(--danger) 30%,
+    transparent
+  );
+  outline-offset: 2px;
+}
+
+.transaction-delete-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .transactions-page__header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .transactions-page__header .add-button {
+    justify-content: center;
   }
 }

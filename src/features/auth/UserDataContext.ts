@@ -12,7 +12,7 @@ export type UserDataContextValue = {
   transactions: Transaction[];
   selectAccount: (accountId: string) => void;
   addTransaction: (transaction: Transaction) => void;
-  removeLatestTransaction: () => void;
+  removeTransaction: (transactionId: string) => void;
   balance: number;
 };
 

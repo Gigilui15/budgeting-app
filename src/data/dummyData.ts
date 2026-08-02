@@ -19,7 +19,7 @@ export type AppData = {
 export function createDummyData(): AppData {
   const admin: Profile = {
     id: uuidv7(),
-    name: "Luigi Admin",
+    name: "Luigi Naudi",
     email: "admin@gmail.com",
     password: "admin",
     tier: ProfileTier.Admin,

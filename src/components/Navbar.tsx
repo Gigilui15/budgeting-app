@@ -1,6 +1,8 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { MdArrowBack } from "react-icons/md";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "../theme/ThemeContext";
 import { useAuth } from "../features/auth/AuthContext";
+import {  useUserData } from "../features/auth/UserDataContext";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -8,18 +10,47 @@ const Navbar = () => {
   const { logout } = useAuth();
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const isTransactionDetails = /^\/transactions\/[^/]+$/.test(
+    location.pathname,
+  );
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `nav-link${isActive ? " nav-link--active" : ""}`;
+
+  const username = useUserData().profile.name;
 
   function handleLogout() {
     logout();
     navigate("/login", { replace: true });
   }
 
+  function handleBack() {
+    const state = location.state as { from?: string } | null;
+
+    if (state?.from === "/transactions") {
+      navigate(-1);
+      return;
+    }
+
+    navigate("/transactions", { replace: true });
+  }
+
   return (
     <header className="site-header">
       <nav className="navbar" aria-label="Main navigation">
+        {isTransactionDetails && (
+          <button
+            type="button"
+            className="navbar__back-button"
+            aria-label="Back to transactions"
+            title="Back to transactions"
+            onClick={handleBack}
+          >
+            <MdArrowBack aria-hidden="true" />
+          </button>
+        )}
+
         <NavLink to="/" className="navbar__brand" aria-label="Budget Base home">
           <img
             src={isDark ? "/dark-logo.svg" : "/light-logo.svg"}
@@ -41,7 +72,7 @@ const Navbar = () => {
         <div className="navbar__actions">
           <div className="profile-nav">
             <NavLink to="/profile" className={navLinkClass}>
-              Profile
+              {username}
             </NavLink>
 
             <div className="popup-content">

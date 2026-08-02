@@ -71,40 +71,28 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
     }));
   }
 
-  function removeLatestTransaction() {
+  function removeTransaction(transactionId: string) {
     setAppData((currentData) => {
-      // Re-check ownership against the latest state at deletion time instead of
-      // trusting only the transaction list that was rendered previously.
       const ownedAccountIds = new Set(
         currentData.accounts
           .filter((account) => account.profileId === profileId)
           .map((account) => account.id),
       );
 
-      let latestOwnedTransaction: Transaction | undefined;
+      const transactionToDelete = currentData.transactions.find(
+        (transaction) =>
+          transaction.id === transactionId &&
+          ownedAccountIds.has(transaction.accountId),
+      );
 
-      for (let index = currentData.transactions.length - 1; index >= 0; index--) {
-        const candidate = currentData.transactions[index];
-
-        if (
-          candidate.accountId === selectedAccount.id &&
-          ownedAccountIds.has(candidate.accountId)
-        ) {
-          latestOwnedTransaction = candidate;
-          break;
-        }
-      }
-
-      // Having nothing eligible to delete is a harmless no-op. The transaction
-      // page also disables its button when this account has no transactions.
-      if (!latestOwnedTransaction) {
+      if (!transactionToDelete) {
         return currentData;
       }
 
       return {
         ...currentData,
         transactions: currentData.transactions.filter(
-          (transaction) => transaction.id !== latestOwnedTransaction.id,
+          (transaction) => transaction.id !== transactionToDelete.id,
         ),
       };
     });
@@ -124,7 +112,7 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
     transactions,
     selectAccount,
     addTransaction,
-    removeLatestTransaction,
+    removeTransaction,
     balance: selectedAccount.balance + calculateBalance(transactions),
   };
 
